@@ -37,7 +37,7 @@ class CariIjazah extends Component implements HasForms
     // {
     //     return view('livewire.create-post');
     // }
-
+    // test
     public function render()
     {
         return view('livewire.cari-ijazah');
