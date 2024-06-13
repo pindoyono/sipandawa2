@@ -25,9 +25,9 @@
                     dan dapat diakses kapan saja, di mana saja.
                 </p> --}}
                 <p class="text-center">
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center ">
                     <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white shadow-md rounded-xl">
+                        <table class="min-w-full shadow-md rounded-xl">
                             <tbody class="text-blue-gray-900">
                                 @foreach ($this->results as $key => $item)
                                     <tr class="border-b border-blue-gray-200">
