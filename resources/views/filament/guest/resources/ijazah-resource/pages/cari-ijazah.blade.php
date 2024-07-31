@@ -35,7 +35,7 @@
                                             Data Ijazah SD
                                         </tr>
                                         @foreach ($this->results['sd'] as $key => $item)
-                                            <tr class="border-b border-blue-gray-200">
+                                            <tr class="text-sm border-b border-blue-gray-200">
                                                 <td class="py-3 px-130">{{ $key }}
                                                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
                                                 <td class="py-3 px-130">: </td>
@@ -64,7 +64,7 @@
                                             Data Ijazah SMP
                                         </tr>
                                         @foreach ($this->results['smp'] as $key => $item)
-                                            <tr class="border-b border-blue-gray-200">
+                                            <tr class="text-sm border-b border-blue-gray-200">
                                                 <td class="py-3 px-130">{{ $key }}
                                                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
                                                 <td class="py-3 px-130">: </td>
