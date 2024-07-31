@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ijazahs', function (Blueprint $table) {
+        Schema::create('ijazah_smps', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->nullable();
             $table->bigInteger('sekolah_id')->default(1);
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ijazahs');
+        Schema::dropIfExists('ijazah_smps');
     }
 };

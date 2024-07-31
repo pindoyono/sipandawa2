@@ -24,24 +24,64 @@
                     memudahkan akses dan verifikasi data ijazah, memastikan setiap dokumen penting tersimpan dengan aman
                     dan dapat diakses kapan saja, di mana saja.
                 </p> --}}
-                <p class="text-center">
-                <div class="flex items-center justify-center ">
+
+                <div class="flex items-center justify-center space-x-100 ">
                     <div class="overflow-x-auto">
                         <table class="min-w-full shadow-md rounded-xl">
                             <tbody class="text-blue-gray-900">
-                                @foreach ($this->results as $key => $item)
-                                    <tr class="border-b border-blue-gray-200">
-                                        <td class="py-3 px-130">{{ $key }}
-                                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
-                                        <td class="py-3 px-130">: </td>
-                                        <td class="py-3 px-130">&emsp;&emsp;{{ $item }}</td>
-                                    </tr>
-                                @endforeach
+                                @if (!empty($this->results['sd']))
+                                    @if ($this->results['sd_count'] > 0)
+                                        <tr>
+                                            Data Ijazah SD
+                                        </tr>
+                                        @foreach ($this->results['sd'] as $key => $item)
+                                            <tr class="border-b border-blue-gray-200">
+                                                <td class="py-3 px-130">{{ $key }}
+                                                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+                                                <td class="py-3 px-130">: </td>
+                                                <td class="py-3 px-130">&emsp;&emsp;{{ $item }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        Data Ijazah SMP Tidak Di temukan
+                                    @endif
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="">
+                        &emsp;&emsp;&emsp;&emsp;
+                    </div>
+
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full shadow-md rounded-xl">
+                            <tbody class="text-blue-gray-900">
+                                @if (!empty($this->results['sd']))
+                                    @if ($this->results['smp_count'] > 0)
+                                        <tr>
+                                            Data Ijazah SMP
+                                        </tr>
+                                        @foreach ($this->results['smp'] as $key => $item)
+                                            <tr class="border-b border-blue-gray-200">
+                                                <td class="py-3 px-130">{{ $key }}
+                                                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+                                                <td class="py-3 px-130">: </td>
+                                                <td class="py-3 px-130">&emsp;&emsp;{{ $item }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        Data Ijazah SMP Tidak Di temukan
+                                    @endif
+                                @endif
                             </tbody>
                         </table>
 
                     </div>
+
                 </div>
+
                 </p>
             </x-filament::section>
         </form>

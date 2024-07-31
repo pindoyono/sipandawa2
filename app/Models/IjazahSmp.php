@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ijazah extends Model
+class IjazahSmp extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'nama',
         'sekolah_id',
@@ -22,5 +21,4 @@ class Ijazah extends Model
         'nilai',
         'tgl_terbit',
     ];
-
 }

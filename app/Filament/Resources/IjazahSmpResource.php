@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\IjazahResource\Pages;
-use App\Filament\Resources\IjazahResource\RelationManagers;
-use App\Models\Ijazah;
+use App\Filament\Resources\IjazahSmpResource\Pages;
+use App\Filament\Resources\IjazahSmpResource\RelationManagers;
+use App\Models\IjazahSmp;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class IjazahResource extends Resource
+class IjazahSmpResource extends Resource
 {
-    protected static ?string $model = Ijazah::class;
+    protected static ?string $model = IjazahSmp::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,27 +24,29 @@ class IjazahResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nama')
-                ->maxLength(255),
-            Forms\Components\TextInput::make('sekolah_id')
-                ->required()
-                ->maxLength(255)
-                ->default(1),
-            Forms\Components\TextInput::make('nis')
-                ->maxLength(255),
-            Forms\Components\TextInput::make('nisn')
-                ->maxLength(255),
-            Forms\Components\TextInput::make('tmt_lahir')
-                ->maxLength(255),
-            Forms\Components\DatePicker::make('tgl_lahir'),
-            Forms\Components\TextInput::make('nama_ayah')
-                ->maxLength(255),
-            Forms\Components\TextInput::make('nama_ibu')
-                ->maxLength(255),
-            Forms\Components\TextInput::make('no_ijazah')
-                ->maxLength(255),
-            Forms\Components\TextInput::make('nilai')
-                ->maxLength(255),
-            Forms\Components\DatePicker::make('tgl_terbit'),
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('sekolah_id')
+                    ->required()
+                    ->numeric()
+                    ->default(1),
+                Forms\Components\TextInput::make('nis')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('nisn')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('tmt_lahir')
+                    ->maxLength(255),
+                Forms\Components\DatePicker::make('tgl_lahir')
+                    ->required(),
+                Forms\Components\TextInput::make('nama_ayah')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('nama_ibu')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('no_ijazah')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('nilai')
+                    ->maxLength(255),
+                Forms\Components\DatePicker::make('tgl_terbit')
+                    ->required(),
             ]);
     }
 
@@ -55,7 +57,8 @@ class IjazahResource extends Resource
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sekolah_id')
-                    ->searchable(),
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('nis')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nisn')
@@ -63,7 +66,8 @@ class IjazahResource extends Resource
                 Tables\Columns\TextColumn::make('tmt_lahir')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tgl_lahir')
-                    ->searchable(),
+                    ->date()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('nama_ayah')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_ibu')
@@ -73,7 +77,8 @@ class IjazahResource extends Resource
                 Tables\Columns\TextColumn::make('nilai')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tgl_terbit')
-                    ->searchable(),
+                    ->date()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -106,9 +111,9 @@ class IjazahResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListIjazahs::route('/'),
-            'create' => Pages\CreateIjazah::route('/create'),
-            'edit' => Pages\EditIjazah::route('/{record}/edit'),
+            'index' => Pages\ListIjazahSmps::route('/'),
+            'create' => Pages\CreateIjazahSmp::route('/create'),
+            'edit' => Pages\EditIjazahSmp::route('/{record}/edit'),
         ];
     }
 }

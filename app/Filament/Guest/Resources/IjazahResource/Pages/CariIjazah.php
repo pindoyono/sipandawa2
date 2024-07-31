@@ -4,6 +4,8 @@ namespace App\Filament\Guest\Resources\IjazahResource\Pages;
 
 use App\Filament\Guest\Resources\IjazahResource;
 use App\Models\Ijazah;
+use App\Models\IjazahSmp;
+use App\Models\Sekolah;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\Actions\Action;
@@ -81,18 +83,34 @@ class CariIjazah extends Page implements HasForms, HasActions, HasInfolists
     public function save()
     {
         $results = Ijazah::query()->where('nisn', $this->nisn);
+        $results1 = IjazahSmp::query()->where('nisn', $this->nisn);
 
-        $this->results['NISN'] = $results->value('nama');
-        $this->results['Nama'] = $results->value('nama');
-        $this->results['Sekolah'] = $results->value('sekolah');
-        $this->results['Tanggal Lahir'] = $results->value('tgl_lahir');
-        $this->results['Tempat Lahir'] = $results->value('tmt_lahir');
-        $this->results['Nama ortu'] = $results->value('nama_ortu');
-        $this->results['No Ijazah SD'] = $results->value('no_ijazah_sd');
-        $this->results['No Ijazah SMP'] = $results->value('no_ijazah_smp');
-        $this->results['Status'] = $results->value('status');
-        $this->results['Tahun Lulus'] = $results->value('th_lulus');
+        $this->results['sd']['Nama'] = $results->value('nama');
+        $this->results['sd']['Sekolah'] = Sekolah::query()->where('id', $results->value('sekolah_id'))->pluck('nama');
+        $this->results['sd']['NISN'] = $results->value('nis');
+        $this->results['sd']['NISN'] = $results->value('nisn');
+        $this->results['sd']['Tempat Lahir'] = $results->value('tmt_lahir');
+        $this->results['sd']['Tanggal Lahir'] = $results->value('tgl_lahir');
+        $this->results['sd']['Nama Ayah'] = $results->value('nama_ayah');
+        $this->results['sd']['Nama Ibu'] = $results->value('nama_ibu');
+        $this->results['sd']['No Ijazah'] = $results->value('no_ijazah');
+        $this->results['sd']['Nilai Rata Rata'] = $results->value('nilai');
 
+        $this->results['smp']['Nama'] = $results1->value('nama');
+        $this->results['smp']['Sekolah'] = $results1->value('sekolah_id');
+        $this->results['smp']['NISN'] = $results1->value('nis');
+        $this->results['smp']['NISN'] = $results1->value('nisn');
+        $this->results['smp']['Tempat Lahir'] = $results1->value('tmt_lahir');
+        $this->results['smp']['Tanggal Lahir'] = $results1->value('tgl_lahir');
+        $this->results['smp']['Nama Ayah'] = $results1->value('nama_ayah');
+        $this->results['smp']['Nama Ibu'] = $results1->value('nama_ibu');
+        $this->results['smp']['No Ijazah'] = $results1->value('no_ijazah');
+        $this->results['smp']['Nilai Rata Rata'] = $results1->value('nilai');
+
+        $this->results['smp_count'] = IjazahSmp::query()->where('nisn', $this->nisn)->count();
+        $this->results['sd_count'] = Ijazah::query()->where('nisn', $this->nisn)->count();
+
+        // dd($this->results['smp']);
         return $this->results;
 
         // try {

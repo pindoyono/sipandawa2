@@ -2,22 +2,21 @@
 
 namespace App\Imports;
 
-use App\Models\Ijazah;
+use App\Models\IjazahSmp;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class MyIjazahImport implements ToCollection, WithHeadingRow
+class MyIjazahSmpImport implements ToCollection, WithHeadingRow
 {
     /**
      * @param Collection $collection
      */
-
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            if (is_null(Ijazah::where('nisn', $row['nisn'])->first())) {
-                Ijazah::create([
+            if (is_null(IjazahSmp::where('nisn', $row['nisn'])->first())) {
+                IjazahSmp::create([
                     'nama' => $row['nama'],
                     'sekolah_id' => 1,
                     'nis' => $row['nis'],
