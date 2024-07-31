@@ -97,7 +97,7 @@ class CariIjazah extends Page implements HasForms, HasActions, HasInfolists
         $this->results['sd']['Nilai Rata Rata'] = $results->value('nilai');
 
         $this->results['smp']['Nama'] = $results1->value('nama');
-        $this->results['smp']['Sekolah'] = $results1->value('sekolah_id');
+        $this->results['smp']['Sekolah'] = Sekolah::query()->where('id', $results1->value('sekolah_id'))->pluck('nama');
         $this->results['smp']['NISN'] = $results1->value('nis');
         $this->results['smp']['NISN'] = $results1->value('nisn');
         $this->results['smp']['Tempat Lahir'] = $results1->value('tmt_lahir');
