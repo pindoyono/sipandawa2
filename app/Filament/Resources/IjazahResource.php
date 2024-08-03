@@ -24,7 +24,8 @@ class IjazahResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         // return parent::getEloquentQuery()->where('user_id',auth()->id());
-        if (auth()->user()->role === 'Admin SD') {
+            if(Auth::user()->hasRole('Admin SD')){
+
             $sekolah_id = User::find(auth()->id())->sekolah_id;
             return parent::getEloquentQuery()->where('sekolah_id',$sekolah_id);
         }else{
