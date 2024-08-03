@@ -31,7 +31,7 @@ class GuestPanelProvider extends PanelProvider
             ->path('')
             // ->login(null)
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Indigo,
             ])
             ->discoverResources(in: app_path('Filament/Guest/Resources'), for: 'App\\Filament\\Guest\\Resources')
             ->discoverPages(in: app_path('Filament/Guest/Pages'), for: 'App\\Filament\\Guest\\Pages')
@@ -61,7 +61,8 @@ class GuestPanelProvider extends PanelProvider
 
             ->navigationItems([
 
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/admin/theme.css');
     }
 }
 //filament.admin.resources.sekolahs.create
