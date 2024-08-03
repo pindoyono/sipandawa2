@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use App\Models\Sekolah;
 use Filament\Forms\Form;
 use App\Models\IjazahSmp;
 use Filament\Tables\Table;
@@ -41,10 +42,11 @@ class IjazahSmpResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('nama')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('sekolah_id')
+                Forms\Components\Select::make('sekolah_id')
+                    ->label('Sekolah')
                     ->required()
-                    ->numeric()
-                    ->default(1),
+                    ->options(Sekolah::all()->pluck('nama', 'id'))
+                    ->searchable(),
                 Forms\Components\TextInput::make('nis')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('nisn')

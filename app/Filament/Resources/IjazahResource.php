@@ -6,6 +6,7 @@ use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
 use App\Models\Ijazah;
+use App\Models\Sekolah;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
@@ -40,12 +41,13 @@ class IjazahResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama')
+            Forms\Components\TextInput::make('nama')
                 ->maxLength(255),
-            Forms\Components\TextInput::make('sekolah_id')
+            Forms\Components\Select::make('sekolah_id')
+                ->label('Sekolah')
                 ->required()
-                ->maxLength(255)
-                ->default(1),
+                ->options(Sekolah::all()->pluck('nama', 'id'))
+                ->searchable(),
             Forms\Components\TextInput::make('nis')
                 ->maxLength(255),
             Forms\Components\TextInput::make('nisn')
