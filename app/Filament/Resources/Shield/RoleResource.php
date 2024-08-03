@@ -2,21 +2,22 @@
 
 namespace App\Filament\Resources\Shield;
 
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
-use BezhanSalleh\FilamentShield\Facades\FilamentShield;
-use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
-use BezhanSalleh\FilamentShield\Forms\ShieldSelectAllToggle;
-use App\Filament\Resources\Shield\RoleResource\Pages;
-use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Forms;
-use Filament\Forms\Components\Component;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Components\Component;
+use BezhanSalleh\FilamentShield\Support\Utils;
+use App\Filament\Resources\Shield\RoleResource\Pages;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use BezhanSalleh\FilamentShield\Facades\FilamentShield;
+use BezhanSalleh\FilamentShield\Forms\ShieldSelectAllToggle;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 
 class RoleResource extends Resource implements HasShieldPermissions
 {
@@ -154,8 +155,7 @@ class RoleResource extends Resource implements HasShieldPermissions
     public static function shouldRegisterNavigation(): bool
     {
         // return Utils::isResourceNavigationRegistered();
-        dd(auth()->user()->role);
-        if(auth()->user()->role === 'super_admin'){
+        if(Auth::user()->hasRole('super_admin')){
             return true;
         }else{
         return false;
