@@ -154,6 +154,7 @@ class RoleResource extends Resource implements HasShieldPermissions
     public static function shouldRegisterNavigation(): bool
     {
         // return Utils::isResourceNavigationRegistered();
+        dd(auth()->user()->role);
         if(auth()->user()->role === 'super_admin'){
             return true;
         }else{
