@@ -17,6 +17,9 @@ class SekolahResource extends Resource
 {
     protected static ?string $model = Sekolah::class;
 
+    protected static ?string $pluralLabel = 'Sekolah';
+
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

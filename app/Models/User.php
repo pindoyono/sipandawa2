@@ -23,6 +23,7 @@ class User extends Authenticatable implements HasAvatar
         'name',
         'email',
         'password',
+        'sekolah_id',
         'avatar_url',
     ];
 
@@ -58,4 +59,11 @@ class User extends Authenticatable implements HasAvatar
     {
         return $this->avatar_url ? Storage::url($this->avatar_url) : null;
     }
+
+    public function sekolah()
+    {
+        // return $this->hasMany(Sekolah::class);
+        return $this->belongsTo(Sekolah::class);
+    }
+
 }

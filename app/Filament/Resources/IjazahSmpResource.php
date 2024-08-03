@@ -17,7 +17,21 @@ class IjazahSmpResource extends Resource
 {
     protected static ?string $model = IjazahSmp::class;
 
+    // protected static ?string $label = 'Ijazah SMP';
+    protected static ?string $pluralLabel = 'Ijazah SMP';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function getEloquentQuery(): Builder
+    {
+        // return parent::getEloquentQuery()->where('user_id',auth()->id());
+        if (auth()->user()->role === 'Admin SMP') {
+            $sekolah_id = User::find(auth()->id())->sekolah_id;
+            return parent::getEloquentQuery()->where('sekolah_id',$sekolah_id);
+        }else{
+            return parent::getEloquentQuery();
+        }
+    }
 
     public static function form(Form $form): Form
     {
@@ -56,7 +70,7 @@ class IjazahSmpResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('sekolah_id')
+                Tables\Columns\TextColumn::make('sekolah.nama')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nis')

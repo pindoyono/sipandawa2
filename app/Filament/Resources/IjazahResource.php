@@ -2,20 +2,35 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\IjazahResource\Pages;
-use App\Filament\Resources\IjazahResource\RelationManagers;
-use App\Models\Ijazah;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\User;
 use Filament\Tables;
+use App\Models\Ijazah;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\IjazahResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\IjazahResource\RelationManagers;
 
 class IjazahResource extends Resource
 {
     protected static ?string $model = Ijazah::class;
+
+    // protected static ?string $label = 'Ijazah SD';
+    protected static ?string $pluralLabel = 'Ijazah SD';
+
+    public static function getEloquentQuery(): Builder
+    {
+        // return parent::getEloquentQuery()->where('user_id',auth()->id());
+        if (auth()->user()->role === 'Admin SD') {
+            $sekolah_id = User::find(auth()->id())->sekolah_id;
+            return parent::getEloquentQuery()->where('sekolah_id',$sekolah_id);
+        }else{
+            return parent::getEloquentQuery();
+        }
+    }
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -54,7 +69,7 @@ class IjazahResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('sekolah_id')
+                Tables\Columns\TextColumn::make('sekolah.nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nis')
                     ->searchable(),

@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Ijazah;
+use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -15,11 +16,12 @@ class MyIjazahImport implements ToCollection, WithHeadingRow
 
     public function collection(Collection $rows)
     {
+        $sekolah_id = User::find(auth()->id())->sekolah_id;
         foreach ($rows as $row) {
             if (is_null(Ijazah::where('nisn', $row['nisn'])->first())) {
                 Ijazah::create([
                     'nama' => $row['nama'],
-                    'sekolah_id' => 1,
+                    'sekolah_id' => $sekolah_id,
                     'nis' => $row['nis'],
                     'nisn' => $row['nisn'],
                     'tmt_lahir' => $row['tmt_lahir'],

@@ -23,4 +23,10 @@ class Ijazah extends Model
         'tgl_terbit',
     ];
 
+    public function sekolah()
+    {
+        // return $this->hasMany(Sekolah::class);
+        return $this->belongsTo(Sekolah::class);
+    }
+
 }
