@@ -42,28 +42,52 @@ class IjazahResource extends Resource
         return $form
             ->schema([
             Forms\Components\TextInput::make('nama')
+            ->label('Nama')
+                ->required()
                 ->maxLength(255),
             Forms\Components\Select::make('sekolah_id')
                 ->label('Sekolah')
                 ->required()
                 ->options(Sekolah::all()->pluck('nama', 'id'))
                 ->searchable(),
+            Forms\Components\TextInput::make('nama_kepsek')
+            ->label('Nama Kepsek')
+                ->required()
+                ->maxLength(255),
             Forms\Components\TextInput::make('nis')
+            ->label('NIS')
+                ->required()
                 ->maxLength(255),
             Forms\Components\TextInput::make('nisn')
+            ->label('NISN')
+                ->required()
                 ->maxLength(255),
             Forms\Components\TextInput::make('tmt_lahir')
+            ->label('Tempat Lahir')
+                ->required()
                 ->maxLength(255),
-            Forms\Components\DatePicker::make('tgl_lahir'),
+            Forms\Components\DatePicker::make('tgl_lahir')
+            ->label('Tanggal Lahir')
+                ->required(),
             Forms\Components\TextInput::make('nama_ayah')
+            ->label('Nama Ayah')
+                ->required()
                 ->maxLength(255),
             Forms\Components\TextInput::make('nama_ibu')
+            ->label('Nama Ibu')
+                ->required()
                 ->maxLength(255),
             Forms\Components\TextInput::make('no_ijazah')
+            ->label('Nomor Ijazah')
+                ->required()
                 ->maxLength(255),
             Forms\Components\TextInput::make('nilai')
+            ->label('Nilai Rata-Rata')
+                ->required()
                 ->maxLength(255),
-            Forms\Components\DatePicker::make('tgl_terbit'),
+            Forms\Components\DatePicker::make('tgl_terbit')
+            ->label('Tanggal Terbit')
+                ->required(),
             ]);
     }
 
