@@ -68,6 +68,24 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
             ])
+
+            ->navigationItems([
+                NavigationItem::make('Cari Ijazah')
+                    ->url(url('/ijazahs'))
+                    ->icon('heroicon-o-magnifying-glass')
+                    ->hidden(fn(): bool => filament()->auth()->check())
+                    ->sort(3),
+                NavigationItem::make('Data Sekolah SD')
+                    ->url(url('/sekolahs'))
+                    ->icon('heroicon-o-server')
+                    ->hidden(fn(): bool => filament()->auth()->check())
+                    ->sort(3),
+                NavigationItem::make('Data Sekolah SMP')
+                    ->url(url('/sekolah-sds'))
+                    ->icon('heroicon-o-server-stack')
+                    ->hidden(fn(): bool => filament()->auth()->check())
+                    ->sort(3),
+            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

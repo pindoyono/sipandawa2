@@ -23,6 +23,7 @@ class MyIjazahImport implements ToCollection, WithHeadingRow
                     'nama' => $row['nama'],
                     'sekolah_id' => $sekolah_id,
                     'nis' => $row['nis'],
+                    'nama_kepsek' => $row['nama_kepsek'],
                     'nisn' => $row['nisn'],
                     'tmt_lahir' => $row['tmt_lahir'],
                     'tgl_lahir' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tgl_lahir']),

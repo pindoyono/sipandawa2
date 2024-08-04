@@ -21,6 +21,7 @@ class Ijazah extends Model
         'no_ijazah',
         'nilai',
         'tgl_terbit',
+        'nama_kepsek',
     ];
 
     public function sekolah()

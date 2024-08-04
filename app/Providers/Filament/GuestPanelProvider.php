@@ -38,6 +38,24 @@ class GuestPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->navigationItems([
+                NavigationItem::make('Cari Ijazah')
+                    ->url(url('/ijazahs'))
+                    ->icon('heroicon-o-magnifying-glass')
+                    ->sort(3),
+                NavigationItem::make('Data Sekolah SD')
+                    ->url(url('/sekolahs'))
+                    ->icon('heroicon-o-server')
+                    ->sort(3),
+                NavigationItem::make('Data Sekolah SMP')
+                    ->url(url('/sekolah-sds'))
+                    ->icon('heroicon-o-server-stack')
+                    ->sort(3),
+                NavigationItem::make('Admin')
+                    ->url(url('/admin'))
+                    ->icon('heroicon-o-rocket-launch')
+                    ->sort(3),
+            ])
             ->discoverWidgets(in: app_path('Filament/Guest/Widgets'), for: 'App\\Filament\\Guest\\Widgets')
             ->widgets([
                 // Widgets\AccountWidget::class,

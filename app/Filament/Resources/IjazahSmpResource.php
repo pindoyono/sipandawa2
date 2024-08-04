@@ -77,6 +77,9 @@ class IjazahSmpResource extends Resource
                 Tables\Columns\TextColumn::make('sekolah.nama')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('nama_kepsek')
+                    ->label('Nama Kepsek')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nis')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nisn')

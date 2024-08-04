@@ -75,6 +75,9 @@ class IjazahResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sekolah.nama')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('nama_kepsek')
+                    ->label('Nama Kepsek')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nis')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nisn')

@@ -14,6 +14,8 @@ class SekolahResource extends Resource
     protected static ?string $model = Sekolah::class;
 
     protected static ?string $navigationLabel = 'SMP';
+    protected static bool $shouldRegisterNavigation = false;
+
     // public static $title = 'Data SMP';
 
     // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
