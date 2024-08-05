@@ -15,7 +15,10 @@ class SekolahResource extends Resource
 
     protected static ?string $navigationLabel = 'SMP';
     protected static bool $shouldRegisterNavigation = false;
-
+    public static function canViewAny(): bool
+    {
+        return true;
+    }
     // public static $title = 'Data SMP';
 
     // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

@@ -16,7 +16,10 @@ class IjazahResource extends Resource
     // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationLabel = 'Ijazah';
     protected static bool $shouldRegisterNavigation = false;
-
+    public static function canViewAny(): bool
+    {
+        return true;
+    }
     public static function form(Form $form): Form
     {
         return $form

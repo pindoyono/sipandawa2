@@ -14,7 +14,10 @@ class SekolahSdResource extends Resource
     protected static ?string $model = Sekolah::class;
     protected static ?string $navigationLabel = 'SD';
     protected static bool $shouldRegisterNavigation = false;
-
+    public static function canViewAny(): bool
+    {
+        return true;
+    }
     // public static $title = 'Data SD';
 
 
