@@ -30,6 +30,11 @@ class SekolahResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->default('-'),
+                Forms\Components\Select::make('jenjang')
+                    ->options([
+                        'SD' => 'SD',
+                        'SMP' => 'SMP',
+                    ]),
                 Forms\Components\TextInput::make('npsn')
                     ->required()
                     ->maxLength(255)

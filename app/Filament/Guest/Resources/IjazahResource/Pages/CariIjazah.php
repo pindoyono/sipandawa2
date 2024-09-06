@@ -6,6 +6,7 @@ use App\Filament\Guest\Resources\IjazahResource;
 use App\Models\Ijazah;
 use App\Models\IjazahSmp;
 use App\Models\Sekolah;
+use Carbon\Carbon;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\Actions\Action;
@@ -36,6 +37,7 @@ class CariIjazah extends Page implements HasForms, HasActions, HasInfolists
     public $ijazahs = [];
     public $results = [];
     public $nisn = '';
+    public $nama = '';
     public $tgl_lahir = '';
 
     public function mount(): void
@@ -53,6 +55,8 @@ class CariIjazah extends Page implements HasForms, HasActions, HasInfolists
                     TextInput::make(''),
                     Textarea::make(''),
                 ]),
+                TextInput::make('nama')
+                    ->label('NAMA'),
                 TextInput::make('nisn')
                     ->label('NISN')
                     ->numeric(),
@@ -82,8 +86,20 @@ class CariIjazah extends Page implements HasForms, HasActions, HasInfolists
 
     public function save()
     {
-        $results = Ijazah::query()->where('nisn', $this->nisn);
-        $results1 = IjazahSmp::query()->where('nisn', $this->nisn);
+        $results = Ijazah::query()->where('tgL_lahir', Carbon::parse($this->tgl_lahir)->format('Y-m-d'))->where('nama', $this->nama);
+        $this->results['sd_count'] = Ijazah::query()->where('tgL_lahir', Carbon::parse($this->tgl_lahir)->format('Y-m-d'))->where('nama', $this->nama)->count();
+
+        if ($results->count() == 0) {
+            $this->results['sd_count'] = Ijazah::query()->where('tgL_lahir', Carbon::parse($this->tgl_lahir)->format('Y-m-d'))->where('nisn', $this->nisn)->count();
+            $results = Ijazah::query()->where('nisn', $this->nisn)->where('tgl_lahir', Carbon::parse($this->tgl_lahir)->format('Y-m-d'));
+        }
+        $results1 = IjazahSmp::query()->where('tgL_lahir', Carbon::parse($this->tgl_lahir)->format('Y-m-d'))->where('nama', $this->nama);
+        $this->results['smp_count'] = IjazahSmp::query()->where('tgL_lahir', Carbon::parse($this->tgl_lahir)->format('Y-m-d'))->where('nama', $this->nama)->count();
+
+        if ($results1->count() == 0) {
+            $this->results['smp_count'] = IjazahSmp::query()->where('tgL_lahir', Carbon::parse($this->tgl_lahir)->format('Y-m-d'))->where('nisn', $this->nisn)->count();
+            $results1 = IjazahSmp::query()->where('nisn', $this->nisn)->where('tgL_lahir', Carbon::parse($this->tgl_lahir)->format('Y-m-d'));
+        }
 
         $this->results['sd']['Nama'] = $results->value('nama');
         $this->results['sd']['Sekolah'] = Sekolah::query()->where('id', $results->value('sekolah_id'))->pluck('nama');
@@ -107,8 +123,8 @@ class CariIjazah extends Page implements HasForms, HasActions, HasInfolists
         $this->results['smp']['No Ijazah'] = $results1->value('no_ijazah');
         $this->results['smp']['Nilai Rata Rata'] = $results1->value('nilai');
 
-        $this->results['smp_count'] = IjazahSmp::query()->where('nisn', $this->nisn)->count();
-        $this->results['sd_count'] = Ijazah::query()->where('nisn', $this->nisn)->count();
+        // $this->results['smp_count'] = IjazahSmp::query()->where('nisn', $this->nisn)->count();
+        // $this->results['sd_count'] = Ijazah::query()->where('nisn', $this->nisn)->count();
 
         // dd($this->results['smp']);
         return $this->results;
@@ -125,9 +141,9 @@ class CariIjazah extends Page implements HasForms, HasActions, HasInfolists
     {
         return $infolist
         // ->record($this->results)
-        ->state([
-            $this->results,
-        ])
+            ->state([
+                $this->results,
+            ])
             ->schema([
                 TextEntry::make('name'),
                 // ...

@@ -2,18 +2,27 @@
 
 namespace App\Filament\Guest\Resources;
 
-use App\Filament\Guest\Resources\SekolahSdResource\Pages;
+use Filament\Tables;
 use App\Models\Sekolah;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Guest\Resources\SekolahSdResource\Pages;
 
 class SekolahSdResource extends Resource
 {
     protected static ?string $model = Sekolah::class;
     protected static ?string $navigationLabel = 'SD';
     protected static bool $shouldRegisterNavigation = false;
+    public static function getEloquentQuery(): Builder
+        {
+            if(true){
+                return parent::getEloquentQuery()->where('jenjang','SD');
+            }else{
+                return parent::getEloquentQuery()->where('jenjang','SD');
+            }
+        }
     public static function canViewAny(): bool
     {
         return true;
