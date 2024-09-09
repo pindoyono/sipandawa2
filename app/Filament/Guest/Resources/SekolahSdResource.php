@@ -2,13 +2,13 @@
 
 namespace App\Filament\Guest\Resources;
 
-use Filament\Tables;
+use App\Filament\Guest\Resources\SekolahSdResource\Pages;
 use App\Models\Sekolah;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Guest\Resources\SekolahSdResource\Pages;
 
 class SekolahSdResource extends Resource
 {
@@ -16,19 +16,18 @@ class SekolahSdResource extends Resource
     protected static ?string $navigationLabel = 'SD';
     protected static bool $shouldRegisterNavigation = false;
     public static function getEloquentQuery(): Builder
-        {
-            if(true){
-                return parent::getEloquentQuery()->where('jenjang','SD');
-            }else{
-                return parent::getEloquentQuery()->where('jenjang','SD');
-            }
+    {
+        if (true) {
+            return parent::getEloquentQuery()->where('jenjang', 'SD');
+        } else {
+            return parent::getEloquentQuery()->where('jenjang', 'SD');
         }
+    }
     public static function canViewAny(): bool
     {
         return true;
     }
     // public static $title = 'Data SD';
-
 
     // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -74,7 +73,7 @@ class SekolahSdResource extends Resource
             ])
             ->bulkActions([
                 // Tables\Actions\BulkActionGroup::make([
-                    // Tables\Actions\DeleteBulkAction::make(),
+                // Tables\Actions\DeleteBulkAction::make(),
                 // ]),
             ]);
     }

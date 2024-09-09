@@ -2,13 +2,13 @@
 
 namespace App\Filament\Guest\Resources;
 
-use Filament\Tables;
+use App\Filament\Guest\Resources\SekolahResource\Pages;
 use App\Models\Sekolah;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Guest\Resources\SekolahResource\Pages;
 
 class SekolahResource extends Resource
 {
@@ -18,14 +18,13 @@ class SekolahResource extends Resource
     protected static bool $shouldRegisterNavigation = false;
 
     public static function getEloquentQuery(): Builder
-        {
-            if(true){
-                return parent::getEloquentQuery()->where('jenjang','SD');
-            }else{
-                return parent::getEloquentQuery()->where('jenjang','SD');
-            }
+    {
+        if (true) {
+            return parent::getEloquentQuery()->where('jenjang', 'SMP');
+        } else {
+            return parent::getEloquentQuery()->where('jenjang', 'SMP');
         }
-
+    }
 
     public static function canViewAny(): bool
     {
@@ -49,25 +48,25 @@ class SekolahResource extends Resource
             ->columns([
                 //
                 Tables\Columns\TextColumn::make('index')
-                ->label('Nomor')
-                ->rowIndex(),
-            Tables\Columns\TextColumn::make('nama')
-                ->label('Nama')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('npsn')
-                ->label('NPSN')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('telpon')
-                ->label('No Telepon')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
-            Tables\Columns\TextColumn::make('updated_at')
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('Nomor')
+                    ->rowIndex(),
+                Tables\Columns\TextColumn::make('nama')
+                    ->label('Nama')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('npsn')
+                    ->label('NPSN')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('telpon')
+                    ->label('No Telepon')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -77,7 +76,7 @@ class SekolahResource extends Resource
             // ])
             ->bulkActions([
                 // Tables\Actions\BulkActionGroup::make([
-                    // Tables\Actions\DeleteBulkAction::make(),
+                // Tables\Actions\DeleteBulkAction::make(),
                 // ]),
             ]);
     }
