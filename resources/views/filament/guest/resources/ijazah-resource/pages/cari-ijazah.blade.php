@@ -43,7 +43,7 @@
                                             </tr>
                                         @endforeach
                                     @else
-                                        Data Ijazah SMP Tidak Di temukan
+                                        Data Ijazah SD Tidak Di temukan
                                     @endif
                                 @endif
                             </tbody>
