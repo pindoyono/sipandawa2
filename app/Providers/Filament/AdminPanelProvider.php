@@ -66,7 +66,8 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                // Widgets\FilamentInfoWidget::class,
+		//Widgets\SekolahChart::class,
+                //Widgets\FilamentInfoWidget::class,
             ])
             ->brandLogo(asset('images/logo.svg'))
 	        ->favicon(asset('images/logo.svg'))
