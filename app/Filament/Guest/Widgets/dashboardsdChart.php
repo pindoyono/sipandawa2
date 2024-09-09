@@ -3,6 +3,7 @@
 namespace App\Filament\Guest\Widgets;
 
 use Filament\Widgets\ChartWidget;
+use Illuminate\Support\Facades\DB;
 
 class dashboardsdChart extends ChartWidget
 {
@@ -10,11 +11,15 @@ class dashboardsdChart extends ChartWidget
 
     protected function getData(): array
     {
+        for ($i = 1; $i < 13; $i++) {
+            $data[] = DB::table('ijazahs')->whereMonth('created_at', '=', $i)->get()->count();
+        }
         return [
             'datasets' => [
                 [
                     'label' => 'Data Ijazah SD',
-                    'data' => [0, 1, 2, 2, 21, 22, 45, 34, 15, 5, 37, 39],
+                    // 'data' => [0, 0, 0, 0, 0, 0, 0, 15, 55, 0, 0, 0],
+                    'data' => $data,
                 ],
             ],
             'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
