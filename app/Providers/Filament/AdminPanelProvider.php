@@ -68,9 +68,9 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
             ])
-            //->brandLogo(asset('images/logo.svg'))
-	        //->favicon(asset('images/logo.svg'))
-	        //->brandLogoHeight('3rem')
+            ->brandLogo(asset('images/logo.svg'))
+	        ->favicon(asset('images/logo.svg'))
+	        ->brandLogoHeight('3rem')
             ->navigationItems([
                 NavigationItem::make('Cari Ijazah')
                     ->url(url('/ijazahs'))

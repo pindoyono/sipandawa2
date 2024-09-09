@@ -38,9 +38,9 @@ class GuestPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
-	//->brandLogo(asset('images/logo.svg'))
-	//->favicon(asset('images/logo.svg'))
-	//->brandLogoHeight('3rem')
+	->brandLogo(asset('images/logo.svg'))
+	->favicon(asset('images/logo.svg'))
+	->brandLogoHeight('3rem')
             ->navigationItems([
                 NavigationItem::make('Cari Ijazah')
                     ->url(url('/ijazahs'))
