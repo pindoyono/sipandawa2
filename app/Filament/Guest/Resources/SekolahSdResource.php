@@ -12,8 +12,18 @@ use Illuminate\Database\Eloquent\Builder;
 
 class SekolahSdResource extends Resource
 {
+    public static function getModelLabel(): string
+    {
+        return 'Sekolah';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Sekolah';
+    }
     protected static ?string $model = Sekolah::class;
-    protected static ?string $navigationLabel = 'SD';
+    protected static ?string $breadcrumb = "Sekolah";
+    // protected static ?string $navigationLabel = 'SD';
     protected static bool $shouldRegisterNavigation = false;
     public static function getEloquentQuery(): Builder
     {
